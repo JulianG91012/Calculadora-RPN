@@ -24,7 +24,6 @@ void moveStackUp(void)
 
 void printMenuPpal(void)
 {
-    char opcion_ingresada;
     printStack();
     printf("\n");
     printf("-------------------------------------");
@@ -35,42 +34,34 @@ void printMenuPpal(void)
     printf("3. Limpiar último valor\n");
     printf("4. Limpiar toda la pila\n");
     printf("5. Salir\n");
-    opcion_ingresada = scanf("%c");
-
-    switch (opcion_ingresada)
-    {
-    case "1":
-        printMenuNum();
-        break;
-    case "2":
-        
-        break;    
-    case "3":
-        
-        break;
-    case "4":
-        
-        break;
-    case "5":
-        
-        break;
-    default:
-        break;
-    }
 }
 
-void printMenuNum(void)
+// void printMenuNum(void)
+// {
+//     printf("Menu Numeros");
+// }
+
+// void printMenuOps(void)
 {
-
-}
-
-void printMenuOps(void)
-{
-
+    printf("Menu Operaciones");
 }
 
 int main()
 {
-    
+    int opcion_ingresada;
+
     printMenuPpal();
+    scanf(" %d", opcion_ingresada);
+
+    if (opcion_ingresada == 1)
+    {
+        printf("La opción ingresada fue: \n");
+        printf("%d", opcion_ingresada);
+        // printMenuNum();
+    }
+    else if (opcion_ingresada == "2")
+    {
+        printf("Ingrese una opción válida\n");
+        printMenuPpal();
+    }
 }
