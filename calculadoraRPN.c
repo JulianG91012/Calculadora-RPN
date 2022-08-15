@@ -1,13 +1,15 @@
-// Se usa la implementación de Stack de: https://www.techiedelight.com/es/stack-implementation/
 #include <stdio.h>
 #include <math.h>
 float stack[8];
 
+
 void printStack(void)
 {
-    printf("---CALCULADORA RPN by Julian Gómez---\n");
+    //Método para imprimir la Pila, tener en cuenta que la posición que muestra como (8) es 
+    //la posición [0] de la fila
+    printf("---👨‍💻CALCULADORA RPN by Julian Gómez👨‍💻---\n");
     printf("           Pila Actual: \n");
-    for (int i = 0; i < 8; ++i)
+    for (int i = 0; i < 8; i++)
     {
         printf("      %d)", 8 - i);
         printf("      %f\n", stack[i]);
@@ -16,8 +18,9 @@ void printStack(void)
 
 void moveStackUp(void)
 {
+    //Método para 
     int i = 0;
-    for (i = 1; i < 8; ++i)
+    for (i = 1; i < 8; i++)
     {
         stack[i + 1] = stack[i];
     }
@@ -26,19 +29,25 @@ void moveStackUp(void)
 void moveStackDown(void)
 {
     int i = 0;
-    for (i = 8; i > 1; --i)
-    {
-        stack[i - 1] = stack[i];
-    }
+    // if(stack[0] == 0)
+    // {
+        do
+        {
+            stack[i - 1] = stack[i];
+            i++;
+        } while (i < 8);
+    // }
+    // else
+    // {
+    //     printf("La pila está llena\n");
+    //     printf("Elimine un valor o realice una operación para continuar\n");
+    // }
 }
 
 void addToStack(float num_to_add)
 {
-    stack[0] = num_to_add;
     moveStackDown();
-    // moveStackUp();
-    printf("\n");
-    printStack();
+    stack[7] = num_to_add;
     printf("\n");
     printf("\n");
 }
@@ -60,45 +69,53 @@ void printMenuPpal(void)
     printf("\n");
 }
 
-void printMenuNum(void) // int numero
-{
-    float num;
-    printf("Ingrese el número: \n");
-    scanf("%f", &num);
-    addToStack(num);
-    printf("Hola");
-    printf("\n");
-    printf("\n");
-    // printMenuPpal();
-}
 
-// void printMenuOps(void)
-// {
-//     printf("Menu Operaciones");
-// }
+
+//Por añadir: 
+//Verificar si la pila está llena para "no borrar datos de ella" 
+//Opción para Guardar Historial de la pila
 
 int main()
 {
     int opcion_ingresada;
 
-    printMenuPpal();
-    scanf("%d", &opcion_ingresada);
-
-    if (opcion_ingresada == 1)
+    do
     {
-        // float num;
-        printMenuNum();
-        // scanf("%f", &num);
-
-        // printf("El número ingresado fue de: %f", num);
-
-        // Estructura base:
-        //  printMenuNum(num);
-        //  scanf("%f", &num);
-    }
-    else if (opcion_ingresada == 2)
-    {
-        printf("Ingrese una opción válida\n");
         printMenuPpal();
-    }
+        scanf("%d", &opcion_ingresada);
+
+        if (opcion_ingresada == 1)
+        {
+            float num;
+            if (stack[0] == 0)
+            {
+                printf("\n\n");
+                printf("Ingrese el número: \n");
+                scanf("%f", &num);
+                addToStack(num);
+                printf("\n");
+                printf("\n");
+            }
+            else
+            {
+                printf("\n\n");
+                printf("🚧🚧 La pila está llena 🚧🚧\n");
+                printf("🚧🚧 Elimine un valor o realice una operación para continuar 🚧🚧\n");
+            }     
+        }
+        if (opcion_ingresada == 2)
+        {
+            
+        }
+        if (opcion_ingresada == 3)
+        {
+        }
+        if (opcion_ingresada == 4)
+        {
+        }
+        if (opcion_ingresada == 5)
+        {
+            break;
+        }
+    } while (opcion_ingresada != 5);
 }
